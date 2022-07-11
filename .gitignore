@@ -1,6 +1,6 @@
 /.metadata/
 Servers/
-.classpath
+*.classpath
 .project
 .settings/
 .buildpath
