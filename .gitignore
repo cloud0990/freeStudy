@@ -4,3 +4,5 @@ Servers/
 .project
 .settings/
 .buildpath
+.class
+freeStudy/build/classes/vo/PersonVo.class
