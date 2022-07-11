@@ -2,4 +2,5 @@
 /Servers/
 .classpath
 .project
-.settings
+.settings/
+.buildpath
