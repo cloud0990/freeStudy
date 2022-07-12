@@ -21,8 +21,8 @@
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
 	
-	<context:component-scan base-package="com.ict.cloud" />
-	
-	
+	<!-- Controller 수동 생성 -->	
+	<!-- @Autowired를 사용하기위한 context:annotation-config 등록 -->
+	<context:component-scan base-package="controller" />
 	
 </beans:beans>
