@@ -27,9 +27,6 @@
 		<filter-name>characterEncodingFilter</filter-name>
 		<url-pattern>*.do</url-pattern>
 	</filter-mapping>
-	
-
-
 
 	<!-- Processes application requests -->
 	<servlet>
