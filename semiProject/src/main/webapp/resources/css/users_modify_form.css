@@ -1,0 +1,25 @@
+@charset "UTF-8";
+
+#box{
+	margin    : auto;
+	margin-top: 100px;
+	width     : 560px;
+}
+
+h4{
+	text-align  : right;
+	margin-right: 40px;
+	font-size   : 25px;
+	font-weight : bold;
+}
+
+#btn_register, #btn_list{
+	margin-top: 25px;
+}
+
+#id_msg{
+	margin-left: 10px;
+	display    : inline-block;
+	font-size  : 10.6px; 
+	width      : 200px;
+}

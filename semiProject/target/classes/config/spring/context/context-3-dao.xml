@@ -3,6 +3,10 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd">
 	
-	<!-- DaoImpl bean 등록 -->
+	<!-- UsersDaoImpl bean -->
+	<bean id="usersDao" class="dao.UsersDaoImpl">
+		<property name="sqlSession" ref="sqlSession"></property>
+	</bean>	
+		
 			
 </beans>

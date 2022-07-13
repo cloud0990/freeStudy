@@ -20,9 +20,17 @@
 		<beans:property name="prefix" value="/WEB-INF/views/" />
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
-	
+
+
+	<!-- @Autowried를 사용하기위한 설정 -->	
+	<context:annotation-config/>
+
 	<!-- Controller 수동 생성 -->	
-	<!-- @Autowired를 사용하기위한 context:annotation-config 등록 -->
-	<context:component-scan base-package="controller" />
+	<!-- UsersController -->
+	<beans:bean class="controller.UsersController">
+		<beans:property name="usersDao" ref="usersDao"/>
+	</beans:bean>	
+	
+	
 	
 </beans:beans>
