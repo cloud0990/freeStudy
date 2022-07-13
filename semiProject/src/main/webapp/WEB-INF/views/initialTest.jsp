@@ -1,34 +1,34 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
+<meta charset="UTF-8">
 <title>Insert title here</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script type="text/javascript">
 	
 	function result(){
 	  
-	  // ÀÔ·Â¹ÞÀº µ¥ÀÌÅÍ ¾ò¾î¿À±â
+	  // ìž…ë ¥ë°›ì€ ë°ì´í„° ì–»ì–´ì˜¤ê¸°
 	  var text = $("#text").val().trim();	
 	
-	  // ÃÊ¼º ¹è¿­ »ý¼º
-	  var cs = ["¤¡","¤¢","¤¤","¤§","¤¨","¤©","¤±","¤²","¤³","¤µ","¤¶","¤·","¤¸","¤¹","¤º","¤»","¤¼","¤½","¤¾"];
+	  // ì´ˆì„± ë°°ì—´ ìƒì„±
+	  var cs = ["ã„±","ã„²","ã„´","ã„·","ã„¸","ã„¹","ã…","ã…‚","ã…ƒ","ã……","ã…†","ã…‡","ã…ˆ","ã…‰","ã…Š","ã…‹","ã…Œ","ã…","ã…Ž"];
 	  
-	  // result¿¡ Ãß°¡ÇÏ±â À§ÇÑ ºó ¹®ÀÚ¿­ »ý¼º
+	  // resultì— ì¶”ê°€í•˜ê¸° ìœ„í•œ ë¹ˆ ë¬¸ìžì—´ ìƒì„±
 	  var result = "";
 	  
 	  for(var i=0; i<text.length; i++) {
 	    
-	    //ÇÑ±ÛÀÎ °æ¿ì ÀÎÄÚµù
+	    //í•œê¸€ì¸ ê²½ìš° ì¸ì½”ë”©
 	    var code = text.charCodeAt(i)-44032;
 	    
 	    if(code>-1 && code<11172) {
 	    	
 	    	result += cs[Math.floor(code/588)];
 	    
-	    //ÇÑ±ÛÀ» Á¦¿ÜÇÑ´Ù¸é ±úÁú ÀÏÀÌ ¾øÀ¸¹Ç·Î ±×´ë·Î ÀúÀå
+	    //í•œê¸€ì„ ì œì™¸í•œë‹¤ë©´ ê¹¨ì§ˆ ì¼ì´ ì—†ìœ¼ë¯€ë¡œ ê·¸ëŒ€ë¡œ ì €ìž¥
 	    } else { 
 	    	result += text.charAt(i);
 	    }// end : if
@@ -36,16 +36,17 @@
 	  
 	  //return result;
 	  $("#resChosung").val(result);	
-	}// emd : result 
+	}// end : result 
 	
 </script>
 </head>
 <body>
 
-ÃÊ¼ºÀ» ÃßÃâÇÒ ÅØ½ºÆ®¸¦ ÀÔ·ÂÇÏ¼¼¿ä : <input id="text">
+ì´ˆì„±ì„ ì¶”ì¶œí•  í…ìŠ¤íŠ¸ë¥¼ ìž…ë ¥í•˜ì„¸ìš” : <input id="text">
 <br>
-<input type="button" value="°á°ú" onclick="result();">
+<input type="button" value="ê²°ê³¼" onclick="result();">
 <input id="resChosung">
+
 
 </body>
 </html>

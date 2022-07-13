@@ -6,32 +6,55 @@ public class UsersVo {
 	String u_id;
 	String u_pwd;
 	String u_nickname;
-	String zipcode;
+	String u_zipcode;
 	String u_addr;
 	String u_grade;
 	String u_regdate;
 	
-	
+	public int getU_idx() {
+		return u_idx;
+	}
 	public void setU_idx(int u_idx) {
 		this.u_idx = u_idx;
+	}
+	public String getU_id() {
+		return u_id;
 	}
 	public void setU_id(String u_id) {
 		this.u_id = u_id;
 	}
+	public String getU_pwd() {
+		return u_pwd;
+	}
 	public void setU_pwd(String u_pwd) {
 		this.u_pwd = u_pwd;
+	}
+	public String getU_nickname() {
+		return u_nickname;
 	}
 	public void setU_nickname(String u_nickname) {
 		this.u_nickname = u_nickname;
 	}
-	public void setZipcode(String zipcode) {
-		this.zipcode = zipcode;
+	public String getU_zipcode() {
+		return u_zipcode;
+	}
+	public void setU_zipcode(String u_zipcode) {
+		this.u_zipcode = u_zipcode;
+	}
+	public String getU_addr() {
+		return u_addr;
 	}
 	public void setU_addr(String u_addr) {
 		this.u_addr = u_addr;
 	}
+	public String getU_grade() {
+		return u_grade;
+	}
 	public void setU_grade(String u_grade) {
 		this.u_grade = u_grade;
+	}
+	public String getU_regdate() {
+		return u_regdate;
 	}
 	public void setU_regdate(String u_regdate) {
 		this.u_regdate = u_regdate;

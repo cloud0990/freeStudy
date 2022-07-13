@@ -1,0 +1,25 @@
+@charset "UTF-8";
+
+#box{
+	margin     : auto;
+	margin-top : 190px;
+	width      : 350px;
+	height     : 250px;
+	
+	border-radius: 15px;
+	border : 2px solid gray;
+}	
+
+h4{
+	text-align  : center;
+	margin-top  : 30px;
+	font-weight : bold; 
+}
+
+#login_table{
+	
+	width: 300px;
+	margin: auto;
+	margin-top: 30px;
+	
+}
