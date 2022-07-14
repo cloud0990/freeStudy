@@ -6,7 +6,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script type="text/javascript">
-	location.href="users/list.do";
+	location.href="board/list.do";
 </script>
 </head>
 <body>
