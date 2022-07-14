@@ -93,9 +93,9 @@
 		</c:if>
 		
 		<!-- 글쓰기버튼 -->	
-			<div>
-				<input class="btn btn-info" type="button" value="새글작성" id="writeBtn" onclick="insert_form();">
-			</div>
+		<div>
+			<input class="btn btn-info" type="button" value="새글작성" id="writeBtn" onclick="insert_form();">
+		</div>
 	</div>
 <!-- 게시판 목록 출력 -->
 	<table class="table table-striped">
