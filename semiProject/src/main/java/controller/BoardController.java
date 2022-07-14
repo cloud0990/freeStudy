@@ -101,7 +101,7 @@ public class BoardController {
 	
 	// 게시글 삭제
 	@RequestMapping("delete.do")
-	public String delete(int b_idx, Model model) {
+	public String delete(int b_idx) {
 		
 		int res = boardDao.delete(b_idx);
 		

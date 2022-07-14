@@ -110,12 +110,12 @@
 		<input class="btn btn-primary" type="button" value="목록보기" onclick="location.href='list.do'">
 		
 		<!-- 답글은 메인글에만 달 수 있음 -->
-		<c:if test="${vo.b_step eq 0}">
+		<c:if test="${ (vo.b_step eq 0) && (vo.b_subject ne '삭제된 게시글입니다.') }">
 			<input class="btn btn-success" type="button" value="답글쓰기" onclick="reply_form();">
 		</c:if>
 		
 		<!-- 수정/삭제 권한은 게시글 작성자 본인에게만 부여 -->
-		<c:if test="${user.u_idx eq vo.u_idx}">
+		<c:if test="${ (user.u_idx eq vo.u_idx) && (vo.b_subject ne '삭제된 게시글입니다.') }">
 			<div id="btn">
 				<input class="btn btn-info"   type="button" value="수정" onclick="location.href='modify_form.do?b_idx=' + ${vo.b_idx}">
 				<input class="btn btn-danger" type="button" value="삭제" onclick="del(${vo.b_idx});">
