@@ -31,6 +31,11 @@
 		<beans:property name="usersDao" ref="usersDao"/>
 	</beans:bean>	
 	
+	<!-- 게시판 컨트롤러 -->
+	<beans:bean class="controller.BoardController">
+		<beans:property name="boardDao" ref="boardDao"/>
+	</beans:bean>
+	
 	
 	
 </beans:beans>

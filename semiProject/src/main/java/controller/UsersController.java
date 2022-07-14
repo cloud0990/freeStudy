@@ -54,7 +54,7 @@ public class UsersController {
 		
 		int res = usersDao.insert(vo);
 		
-		return "redirect:list.do";
+		return "redirect:../board/list.do";
 	}
 	
 	//·Î±×ÀÎ
@@ -63,6 +63,7 @@ public class UsersController {
 		
 		return "users/users_login_form";
 	}
+	
 	@RequestMapping("modify_form.do")
 	public String modify_form(UsersVo vo, Model model) {
 		
@@ -87,7 +88,7 @@ public class UsersController {
 		
 		session.removeAttribute("user");
 		
-		return "redirect:list.do";
+		return "redirect:../board/list.do";
 	}
 	
 	@RequestMapping("login.do")

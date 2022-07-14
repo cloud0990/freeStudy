@@ -50,8 +50,7 @@
 			
 			<!-- 회원가입 / 로그인 버튼 -->
 			<div id="join">
-				<input class="btn btn-primary" type="button" value="회원가입" onclick="location.href='insert_form.do'">		
-				<input class="btn btn-success" type="button" value="로그인" onclick="location.href='login_form.do'">		
+				<input class="btn btn-success" type="button" value="돌아가기" onclick="location.href='../board/list.do'">		
 			</div>
 			
 			<!-- 실제 데이터 출력 -->

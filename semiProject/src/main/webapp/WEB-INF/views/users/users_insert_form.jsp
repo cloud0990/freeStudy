@@ -197,7 +197,7 @@
 	      				<td colspan="2" align="center">
 	      					<div style="margin-bottom: 20px;">
 		      					<input type="button" value="회원가입" id="btn_register" disabled="disabled" onclick="send(this.form);">
-		      					<input type="button" value="목록보기" id="btn_list" onclick="location.href='list.do'">
+		      					<input type="button" value="목록보기" id="btn_list"     onclick="location.href='${pageContext.request.contextPath}/board/list.do'">
 	      					</div>
 	      				</td>
 	      			</tr>
