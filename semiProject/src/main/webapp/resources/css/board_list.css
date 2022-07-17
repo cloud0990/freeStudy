@@ -1,0 +1,39 @@
+@charset "UTF-8";
+
+* {
+	margin:0;
+	padding:0;
+}	
+	
+#box {
+	width: 1000px;
+	margin: auto;
+	margin-top: 50px;
+}
+
+#title {
+	text-align: left;
+	font-size: 28px;
+	font-weight: bold;
+	color: gray;
+	text-shadow: 1px 1px 3px gray;
+}
+		
+#logInOut {
+	text-align: right;
+}
+
+#writeBtn {
+	margin-bottom: 5px;
+	margin-top: 8px;
+}
+
+.headText, td {
+	text-align: center;
+}
+a {
+	color:black;
+}
+a:hover {
+	text-decoration: none;
+}

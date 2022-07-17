@@ -1,0 +1,48 @@
+@charset "UTF-8";
+
+
+* {
+	margin:0;
+	padding:0;
+}
+
+#box {
+	width: 800px;
+	margin: auto;
+	margin-top: 100px;	
+	
+}
+
+#subject {
+	box-shadow: 1px 1px 2px black;
+	border: 2px solid #cccccc;
+	padding: 5px;
+	margin-bottom: 15px;
+	font-size: 18px;
+	font-weight: bold;
+}
+
+#content {
+	box-shadow: 1px 1px 2px black;
+	border: 2px solid #cccccc;
+	padding: 5px;
+	margin-bottom: 15px;
+	min-height: 100px;
+	font-size: 18px;
+}
+
+#regdate {
+	box-shadow: 1px 1px 2px black;
+	border: 2px solid #cccccc;
+	padding: 5px;
+	margin-bottom: 15px;
+}
+
+#btn {
+	float: right;
+}
+
+.badge {
+	height: 20px;
+	font-size: 13px;
+}

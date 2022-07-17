@@ -15,7 +15,15 @@ public class BoardVo {
 	int    b_step;
 	int    b_depth;
 	
+	//글의 순서를 위한 변수 선언
+	int no;
 	
+	public int getNo() {
+		return no;
+	}
+	public void setNo(int no) {
+		this.no = no;
+	}
 	public int getB_idx() {
 		return b_idx;
 	}

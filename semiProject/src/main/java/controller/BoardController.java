@@ -1,6 +1,8 @@
 package controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -11,14 +13,16 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import common.MyConstant;
 import dao.BoardDao;
+import util.Paging;
 import vo.BoardVo;
 
 @Controller
 @RequestMapping("/board/")
 public class BoardController {
 	
-	//전역변수처럼 선언되어있지만, 해당 메소드가 호출 될 때마다 DS가 넣어줌
+	// 전역변수처럼 선언되어있지만, 해당 메소드가 호출 될 때마다 DS가 넣어줌
 	@Autowired
 	HttpSession        session; 
 	@Autowired
@@ -34,15 +38,36 @@ public class BoardController {
 	}
 
 	// 전체조회
-	@RequestMapping("list.do")
-	public String list(Model model) {
+	// 1. /board/list.do
+	// 3. /board/list.do?page=1
+	@RequestMapping("list.do")       //파라미터는 무조건 문자열로 들어오기 때문에, 초기값은 무조건 String형이다.
+	public String list(@RequestParam(value="page", required=false, defaultValue="1") int nowPage, Model model) {
 		
-		//세션에 저장되어있는 show 정보 삭제
+		// 세션에 저장되어있는 show 정보 삭제
 		session.removeAttribute("show");
 		
-		List<BoardVo> list = boardDao.selectList();
+		// 현재 페이지를 이용해서, 게시물의 start / end 계산
+		int start = (nowPage-1) * MyConstant.Board.BLOCK_LIST + 1;
+		int end   = start + MyConstant.Board.BLOCK_LIST - 1;
 		
+		Map map = new HashMap();
+		map.put("start", start);
+		map.put("end", end);
+		
+		// 전체 게시물 수 구하기
+		int rowTotal = boardDao.selectRowTotal();
+		
+		// 페이징 메뉴 만들기               pageUrl 현재페이지 전체게시물
+		String pageMenu = Paging.getPaging("list.do", nowPage, rowTotal, 
+				                             MyConstant.Board.BLOCK_LIST, //한 화면에 보여질 게시물 수
+				                             MyConstant.Board.BLOCK_PAGE  //한 화면에 보여질 페이지 수
+				                             );
+		
+		List<BoardVo> list = boardDao.selectList(map);
+		
+		// DS가 request binding 할 수 있도록, model에 저장 (결과적으로 request binding)
 		model.addAttribute("list", list);
+		model.addAttribute("pageMenu", pageMenu);
 		
 		return "board/board_list";
 	}
@@ -78,6 +103,7 @@ public class BoardController {
 		return "board/board_insert_form";
 	}
 	
+	// 새 글 쓰기 insert
 	@RequestMapping("insert.do")
 	public String insert(BoardVo vo, Model model) {
 		

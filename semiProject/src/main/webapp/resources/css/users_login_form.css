@@ -1,5 +1,10 @@
 @charset "UTF-8";
 
+* {
+	margin:0;
+	padding:0;
+}	
+
 #box{
 	margin     : auto;
 	margin-top : 190px;

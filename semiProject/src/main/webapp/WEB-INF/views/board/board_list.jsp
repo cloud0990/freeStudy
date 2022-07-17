@@ -6,48 +6,17 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>게시판 목록</title>
+<title>답변형 게시판 : 전체 목록</title>
 <!-- Bootstrap 외부라이브러리등록 -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <!-- css  -->
-<style type="text/css">
-* {
-	margin:0;
-	padding:0;
-}	
-	
-#box {
-	width: 1000px;
-	margin: auto;
-	margin-top: 50px;
-}
-
-#title {
-	text-align: left;
-	font-size: 28px;
-	font-weight: bold;
-	color: gray;
-	text-shadow: 1px 1px 3px gray;
-}
-		
-#logInOut {
-	text-align: right;
-}
-
-#writeBtn {
-	margin-bottom: 5px;
-	margin-top: 8px;
-}
-
-.headText, td {
-	text-align: center;
-}
-</style>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/board_list.css">
 <!-- 자바스크립트 -->
 <script type="text/javascript">
 	
+	//로그인 폼으로 이동
 	function insert_form() {
 		
 		// 로그인 여부 확인
@@ -62,7 +31,6 @@
 		}
 		
 		location.href='insert_form.do';
-		
 	}// end : insert_form()
 
 </script>
@@ -70,7 +38,7 @@
 <body>
 
 <div id="box">
-	<h1 id="title">게시판</h1>
+	<h1 id="title">답변형 게시판</h1>
 
 <!-- 로그인/로그아웃버튼 -->	
 	<div id="logInOut">
@@ -130,7 +98,15 @@
 					</c:forEach>
 					<c:if test="${vo.b_depth ne 0}">ㄴ</c:if>
 
-					<a href="view.do?b_idx=${vo.b_idx}">${vo.b_subject}</a>
+					<!-- 삭제되지 않은 게시물인 경우 -->					
+					<c:if test="${vo.b_use_yn eq 'y'}">
+						<a href="view.do?b_idx=${vo.b_idx}">${vo.b_subject}</a>
+					</c:if>
+					
+					<!-- 삭제된 게시물인 경우 -->					
+					<c:if test="${vo.b_use_yn eq 'n'}">
+						<font color="red">삭제된 게시글입니다.</font>
+					</c:if>
 				</td>	
 
 				<td><span class="badge">${vo.u_nickname}</span></td>	
@@ -140,7 +116,11 @@
 		</c:forEach>
 	</table>
 	
+	<!-- 페이징 메뉴 -->	
+	<div style="text-align: center; font-size: 18px;">
+		${pageMenu}		
+	</div>
+	
 </div><!-- end : box -->
-
 </body>
 </html>
