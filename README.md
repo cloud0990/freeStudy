@@ -8,7 +8,7 @@
 **1. 운영체제**
 - Windows 10
 
-**2. 개발환경**
+**2. 프로젝트 환경**
 - Spring Legacy Project
 
 **3. 사용 툴**
