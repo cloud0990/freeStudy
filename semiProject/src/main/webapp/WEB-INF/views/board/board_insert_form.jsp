@@ -12,34 +12,7 @@
 <!-- CK Editor -->
 <script src="//cdn.ckeditor.com/4.19.0/full/ckeditor.js"></script>
 <!-- css -->
-<style type="text/css">
-
-#box {
-	width: 700px;
-	margin: auto;
-	margin-top: 100px;
-}
-
-#b_subject {
-	width: 100%;
-}
-
-textarea {
-	width: 100%;
-	resize: none;
-	overflow: auto;
-	font-size:15px;
-}
-
-textarea:focus, input:focus {
-	outline: none;
-}
-.badge {
-	height: 20px;
-	font-size: 15px;
-}
-
-</style>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/board_insert_form.css">
 <!-- 자바스크립트 -->
 <script type="text/javascript">
 

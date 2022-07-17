@@ -1,0 +1,31 @@
+@charset "UTF-8";
+
+* {
+	margin: 0px;
+	padding: 0px;
+}
+
+#box {
+	width: 700px;
+	margin: auto;
+	margin-top: 100px;
+}
+
+#b_subject {
+	width: 100%;
+}
+
+textarea {
+	width: 100%;
+	resize: none;
+	overflow: auto;
+	font-size:15px;
+}
+
+textarea:focus, input:focus {
+	outline: none;
+}
+.badge {
+	height: 20px;
+	font-size: 15px;
+}
