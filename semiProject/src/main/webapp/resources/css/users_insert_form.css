@@ -4,21 +4,23 @@
 	margin:0;
 	padding:0;
 }	
-
+body {
+	background: #222222;
+}
 #box{
 	margin    : auto;
-	margin-top: 150px;
+	margin-top: 200px;
 	width     : 560px;
 	border-radius: 15px;
 	border: 2px solid gray;
+	color : white;
 }
-
 h4{
 	text-align  : center;
 	margin-left : 35px;
 	margin-top  : 10px;
 	font-size   : 25px;
-	font-weight : bold;
+	color: white;
 }
 
 #btn_register, #btn_list{
@@ -36,4 +38,5 @@ h4{
 	margin     : auto;
 	margin-top : 20px;
 	width      : 500px;
+	background-color: #222222;
 }

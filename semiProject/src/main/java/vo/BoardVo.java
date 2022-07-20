@@ -14,10 +14,16 @@ public class BoardVo {
 	int    b_ref;
 	int    b_step;
 	int    b_depth;
+	int    no; //글의 순서를 위한 변수 선언
+	int    comment_count; //게시글에 달란 답글 구하기
 	
-	//글의 순서를 위한 변수 선언
-	int no;
 	
+	public int getComment_count() {
+		return comment_count;
+	}
+	public void setComment_count(int comment_count) {
+		this.comment_count = comment_count;
+	}
 	public int getNo() {
 		return no;
 	}

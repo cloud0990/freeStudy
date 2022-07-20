@@ -4,10 +4,12 @@
 	margin:0;
 	padding:0;
 }	
-
+body {
+	background: #222222;
+}
 #box{
 	margin     : auto;
-	margin-top : 15px;
+	margin-top : 150px;
 	width      : 1300px;
 }
 
@@ -21,10 +23,15 @@ th, td{
 	text-align: center;
 	/* text-indent: 10px; -> 들여쓰기 */
 }
-
+tr {
+	color: white;
+}
 #join{
 	text-align   : right;
 	margin-top   : 20px;
 	margin-bottom: 20px;
 	margin-right : 20px;
+}
+.default {
+	color: white;
 }

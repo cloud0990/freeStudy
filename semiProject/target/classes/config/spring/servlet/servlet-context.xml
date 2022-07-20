@@ -36,6 +36,9 @@
 		<beans:property name="boardDao" ref="boardDao"/>
 	</beans:bean>
 	
-	
+	<!-- 댓글 컨트롤러 -->
+	<beans:bean class="controller.CommentController">
+		<beans:property name="commentDao" ref="commentDao"/>
+	</beans:bean>
 	
 </beans:beans>

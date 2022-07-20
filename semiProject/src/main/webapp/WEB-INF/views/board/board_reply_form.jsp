@@ -122,7 +122,7 @@ textarea:focus, input:focus {
 	    		<tr>
 	    			<td colspan="2" align="center">
 	    				<input class="btn btn-primary" type="button" value="답글쓰기" onclick="reply(this.form);">
-	    				<input class="btn btn-success" type="button" value="취소하기" onclick="location.href='list.do'">
+	    				<input class="btn btn-success" type="button" value="목록보기" onclick="location.href='list.do?page=${param.page}';">
 	    			</td>
 	    		</tr>
 	    	</table>

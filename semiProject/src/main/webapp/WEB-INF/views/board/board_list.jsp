@@ -13,61 +13,32 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <!-- css  -->
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/board_list.css">
-<!-- 자바스크립트 -->
 <script type="text/javascript">
-	
-	//로그인 폼으로 이동
-	function insert_form() {
-		
-		// 로그인 여부 확인
-		if("${empty user}"=="true") {
-			
-			if(!confirm('로그인 후 이용가능합니다.\n로그인 하시겠습니까?')) return;
-			
-			// 로그인 폼으로 이동
-			location.href='${pageContext.request.contextPath}/users/login_form.do';
-			
-			return;
-		}
-		
-		location.href='insert_form.do';
-	}// end : insert_form()
-
+//로그인 폼으로 이동
+function insert_form() {
+	// 로그인 여부 확인
+	if("${empty user}"=="true") {
+		if(!confirm('로그인 후 이용가능합니다.\n로그인 하시겠습니까?')) return;
+		// 로그인 폼으로 이동
+		location.href='${pageContext.request.contextPath}/users/login_form.do';
+		return;
+	}
+	location.href='insert_form.do';
+}// end : insert_form
 </script>
 </head>
 <body>
-
+<div id="header">
+	<%@include file="../header/mainmenu.jsp" %>	
+</div>
 <div id="box">
-	<h1 id="title">답변형 게시판</h1>
-
-<!-- 로그인/로그아웃버튼 -->	
 	<div id="logInOut">
-		<!-- 로그인 안 된 경우 -->
-		<c:if test="${empty user}">
-			<input class="btn btn-primary" type="button" value="로그인"   onclick="location.href='${pageContext.request.contextPath}/users/login_form.do'">
-			<input class="btn btn-success" type="button" value="회원가입" onclick="location.href='${pageContext.request.contextPath}/users/insert_form.do'">
-		</c:if>
-		
-		<!-- 로그인 된 경우 : 일반회원 -->
-		<c:if test="${ not empty user && user.u_grade=='일반' }">
-			<b>${user.u_nickname}</b> 님 환영합니다.
-			<input class="btn btn-danger"  type="button" value="로그아웃" onclick="location.href='${pageContext.request.contextPath}/users/logout.do'">
-		</c:if>
-		<!-- 로그인 된 경우 : 관리자회원 -->
-		<c:if test="${ not empty user && user.u_grade=='관리자' }">
-			<b>${user.u_nickname}</b> 님(관리자) 환영합니다.
-			<input class="btn btn-primary" type="button" value="회원관리" onclick="location.href='${pageContext.request.contextPath}/users/list.do'">
-			<input class="btn btn-danger"  type="button" value="로그아웃" onclick="location.href='${pageContext.request.contextPath}/users/logout.do'">
-		</c:if>
-		
-		<!-- 글쓰기버튼 -->	
 		<div>
-			<input class="btn btn-info" type="button" value="새글작성" id="writeBtn" onclick="insert_form();">
+			<input class="btn btn-default" type="button" value="새글작성" id="writeBtn" onclick="insert_form();">
 		</div>
 	</div>
 <!-- 게시판 목록 출력 -->
-	<table class="table table-striped">
-		
+	<table class="table table-striped" style="background-color: white;">
 		<tr class="default">
 			<th class="headText">번호</th>	
 			<th class="headText" width="60%">제목</th>	
@@ -75,7 +46,6 @@
 			<th class="headText">작성일자</th>	
 			<th class="headText">조회수</th>	
 		</tr>
-		
 		<!-- 데이터가 없는 경우 -->
 		<c:if test="${empty list}">
 			<tr>
@@ -84,7 +54,6 @@
 				</td>
 			</tr>
 		</c:if>
-
 		<!-- 데이터가 있는 경우 -->
 		<c:forEach var="vo" items="${list}">
 			<tr>
@@ -97,30 +66,31 @@
 						&nbsp;&nbsp;&nbsp;
 					</c:forEach>
 					<c:if test="${vo.b_depth ne 0}">ㄴ</c:if>
-
-					<!-- 삭제되지 않은 게시물인 경우 -->					
-					<c:if test="${vo.b_use_yn eq 'y'}">
-						<a href="view.do?b_idx=${vo.b_idx}">${vo.b_subject}</a>
-					</c:if>
 					
+					<!-- 사용가능한 게시물인 경우 -->
+					<c:if test="${vo.b_use_yn eq 'y'}">
+						<a href="view.do?b_idx=${vo.b_idx}&page=${empty param.page ? 1 : param.page}&search=${empty param.search ? 'all' : param.search}&search_text=${param.search_text}">
+							${vo.b_subject}
+							<c:if test="${vo.comment_count gt 0}">
+								<span class="badge">${vo.comment_count}</span>
+							</c:if>
+						</a>					
+					</c:if>
 					<!-- 삭제된 게시물인 경우 -->					
 					<c:if test="${vo.b_use_yn eq 'n'}">
 						<font color="red">삭제된 게시글입니다.</font>
 					</c:if>
 				</td>	
-
-				<td><span class="badge">${vo.u_nickname}</span></td>	
+				<td>${vo.u_nickname}</td>	
 				<td>${fn:substring(vo.b_regdate,0,16)}</td>	
 				<td>${vo.b_readhit}</td>	
 			</tr>
 		</c:forEach>
 	</table>
-	
 	<!-- 페이징 메뉴 -->	
 	<div style="text-align: center; font-size: 18px;">
 		${pageMenu}		
 	</div>
-	
 </div><!-- end : box -->
 </body>
 </html>

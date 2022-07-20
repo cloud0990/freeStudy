@@ -8,8 +8,15 @@
 		<setting name="defaultExecutorType" value="REUSE" />
 	</settings>
 	
+	<typeAliases>
+		<typeAlias type="vo.UsersVo"   alias="users"/>
+		<typeAlias type="vo.BoardVo"   alias="board"/>
+		<typeAlias type="vo.CommentVo" alias="comment"/>
+	</typeAliases>
+	
 	<mappers>
 		<mapper resource="config/mybatis/mapper/users.xml" />
 		<mapper resource="config/mybatis/mapper/board.xml" />
+		<mapper resource="config/mybatis/mapper/comment.xml" />
 	</mappers>
 </configuration>
