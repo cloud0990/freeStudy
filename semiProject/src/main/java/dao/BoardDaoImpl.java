@@ -66,5 +66,4 @@ public class BoardDaoImpl implements BoardDao {
 	public int selectRowTotal(Map map) {
 		return sqlSession.selectOne("board.board_condition_row_total", map);
 	}
-
 }

@@ -4,23 +4,24 @@
 	margin:0;
 	padding:0;
 }	
-	
+body {
+	background: #222222;
+}	
 #box {
 	width: 1000px;
 	margin: auto;
-	margin-top: 50px;
+	margin-top: 150px;
 }
-
 #title {
 	text-align: left;
 	font-size: 28px;
 	font-weight: bold;
-	color: gray;
+	color: white;
 	text-shadow: 1px 1px 3px gray;
 }
-		
 #logInOut {
 	text-align: right;
+	color: white;
 }
 
 #writeBtn {
@@ -36,4 +37,9 @@ a {
 }
 a:hover {
 	text-decoration: none;
+}
+.num_box {
+	display: inline-block;
+	width: 20px;
+	height: 20px;
 }

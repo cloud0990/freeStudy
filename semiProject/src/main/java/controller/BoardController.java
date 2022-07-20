@@ -41,7 +41,10 @@ public class BoardController {
 	// 1. /board/list.do
 	// 3. /board/list.do?page=1
 	@RequestMapping("list.do")       //파라미터는 무조건 문자열로 들어오기 때문에, 초기값은 무조건 String형이다.
-	public String list(@RequestParam(value="page", required=false, defaultValue="1") int nowPage, Model model) {
+	public String list(@RequestParam(value="page", required=false, defaultValue="1") int nowPage,
+					   @RequestParam(value="search", required=false, defaultValue="all") String search,
+					   @RequestParam(value="search_text", required=false) String search_text,
+	      			   Model model) {
 		
 		// 세션에 저장되어있는 show 정보 삭제
 		session.removeAttribute("show");
@@ -54,11 +57,29 @@ public class BoardController {
 		map.put("start", start);
 		map.put("end", end);
 		
-		// 전체 게시물 수 구하기
-		int rowTotal = boardDao.selectRowTotal();
+		//전체검색이 아니면
+		if(!search.equals("all")) {
+			if(search.equals("subject_content_name")) {
+				map.put("subject", search_text);
+				map.put("content", search_text);
+				map.put("name", search_text);
+			}else if(search.equals("subject")) {
+				map.put("subject", search_text);
+			}else if(search.equals("content")) {
+				map.put("content", search_text);
+			}else if(search.equals("name")) {
+				map.put("name", search_text);
+			}
+		}
+		
+		// 전체(조건에 맞는) 게시물 수 구하기
+		int rowTotal = boardDao.selectRowTotal(map);
+		
+		// 검색메뉴정보를 페이징메뉴에 전달
+		String search_filter = String.format("search=%s&search_text=%s", search, search_text);
 		
 		// 페이징 메뉴 만들기               pageUrl 현재페이지 전체게시물
-		String pageMenu = Paging.getPaging("list.do", nowPage, rowTotal, 
+		String pageMenu = Paging.getPaging("list.do", search_filter, nowPage, rowTotal, 
 				                             MyConstant.Board.BLOCK_LIST, //한 화면에 보여질 게시물 수
 				                             MyConstant.Board.BLOCK_PAGE  //한 화면에 보여질 페이지 수
 				                             );
@@ -68,6 +89,7 @@ public class BoardController {
 		// DS가 request binding 할 수 있도록, model에 저장 (결과적으로 request binding)
 		model.addAttribute("list", list);
 		model.addAttribute("pageMenu", pageMenu);
+		model.addAttribute("page", nowPage);
 		
 		return "board/board_list";
 	}
@@ -76,7 +98,6 @@ public class BoardController {
 	@RequestMapping("view.do")
 	public String view(int b_idx, Model model) {
 		
-		//b_idx에 해당하는 게시물 정보 얻어오기
 		BoardVo vo = boardDao.selectOne(b_idx);
 		
 		//해당게시물을 안 봤으면 조회수 증가
@@ -85,12 +106,9 @@ public class BoardController {
 			//해당 페이지가 호출될 때마다 조회수 증가 -> 문제점 : 같은 사용자가 계속 새로고침해도 조회수로 적용되기때문에 session 저장
 			int res = boardDao.update_readhit(b_idx);
 			
-			//show정보를 세션에 넣는다.
 			session.setAttribute("show", true);
-			
 		}// end : if
 		
-		//결과적으로 DS가 request binding 해줌
 		model.addAttribute("vo", vo);
 		
 		return "board/board_view";
@@ -125,13 +143,21 @@ public class BoardController {
 		return "redirect:list.do";
 	}
 	
-	// 게시글 삭제
+	// 게시글 삭제 : /board/delete.do?b_idx=16&page=3&search=name&search_text=길동
 	@RequestMapping("delete.do")
-	public String delete(int b_idx) {
+	public String delete(int b_idx,
+						 int page,
+						 @RequestParam(value="search", required=false, defaultValue="all") String search,
+						 @RequestParam(value="search_text", required=false) String search_text,
+						 Model model) {
 		
 		int res = boardDao.delete(b_idx);
 		
-		return "redirect:list.do";
+		model.addAttribute("page", page);
+		model.addAttribute("search", search);
+		model.addAttribute("search_text", search_text);
+		
+		return "redirect:list.do"; // list.do?page=3&search=name&search_text=길동
 	}
 	
 	
@@ -166,7 +192,7 @@ public class BoardController {
 		return "redirect:list.do";
 	}
 	
-	// 수정폼 띄우기
+	// 수정폼 띄우기 : /board/modify_form.do?b_idx=16&page=3&search=name&search_text=길동
 	@RequestMapping("modify_form.do") 
 	public String modify_form(int b_idx, Model model) {
 		
@@ -179,11 +205,30 @@ public class BoardController {
 	
 	// 수정하기
 	@RequestMapping("modify.do")
-	public String modify(BoardVo vo) {
+	public String modify(BoardVo vo,
+						 int page,
+						 @RequestParam(value="search", required=false, defaultValue="all") String search,
+						 @RequestParam(value="search_text", required=false) String search_text,
+						 Model model) {
+		
+		// 세션 만료된 경우
+		if(session.getAttribute("user")==null) {
+			model.addAttribute("reason", "session_timeout");
+			return "redirect:../users/users_login_form.do";
+		}
+		
+		String b_ip = request.getRemoteAddr();
+		vo.setB_ip(b_ip);
 		
 		int res = boardDao.update(vo);
 		
-		return "redirect:list.do";
+		// redirect : view.do?b_idx=16&page=3&search=name&search_text=길동
+		model.addAttribute("b_idx", vo.getB_idx());
+		model.addAttribute("page", page);
+		model.addAttribute("search", search);
+		model.addAttribute("search_text", search_text);
+		
+		return "redirect:view.do";
 	}
 	
 	

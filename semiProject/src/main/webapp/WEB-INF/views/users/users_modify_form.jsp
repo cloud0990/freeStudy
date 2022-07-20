@@ -138,11 +138,9 @@
 </script>
 <!-- 등급관리 -->
 <script type="text/javascript">
-
-	$(document).ready(function(){
-		
-		($("#u_grade").val('${vo.u_grade}'))
-	});
+$(document).ready(function(){
+	($("#u_grade").val('${vo.u_grade}'))
+});
 </script>
 </head>
 <body>
@@ -150,7 +148,6 @@
 <form>
 	<input type="hidden" name="u_idx" value="${vo.u_idx}">
 	<div id="box">
-	   
 	   <div class="panel panel-default">
 	      <div class="panel-heading"><h4>회원정보 수정</h4></div>
 	      <div class="panel-body">
@@ -186,10 +183,9 @@
 							</select>
 						</td>
 	      			</tr>
-	      			
 	      			<tr>
 	      				<td colspan="2" align="center">
-	      					<input class="btn btn-default" type="button" value="수정"     id="btn_register" onclick="send(this.form);">
+	      					<input class="btn btn-default" type="button" value="수정하기" id="btn_register" onclick="send(this.form);">
 	      					<input class="btn btn-default" type="button" value="목록보기" id="btn_list"     onclick="location.href='list.do'">
 	      				</td>
 	      			</tr>

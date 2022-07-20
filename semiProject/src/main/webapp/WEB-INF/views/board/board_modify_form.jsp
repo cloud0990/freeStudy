@@ -40,51 +40,48 @@ textarea:focus, input:focus {
 }
 
 </style>
-<!-- 자바스크립트 -->
 <script type="text/javascript">
+function modify(f) {
+	
+	var b_subject = f.b_subject.value.trim();
+	var b_content = CKEDITOR.instances.b_content.getData().trim(); //CKEditor로부터 데이터 얻어오기
+	
+	//입력한 값의 유무 확인
+	if(b_subject=='') {
+		alert('제목을 입력하세요.');
+		f.b_subject='';
+		f.b_subject.focus();
+		return;
+	}
+	if(b_content=='') {
+		alert('내용을 입력하세요.');
+		//문제 : 공백 -> &nbsp; 로 들어감, 공백이 2개 이상이면 p 태그로 감싸짐
+		//CKEDITOR.instances.b_content.setData(); : CKEditor 값 비우기
+		//f.b_content='';
+		//f.b_content.focus();
+		return;
+	}
 
-	function modify(f) {
-		
-		var b_subject = f.b_subject.value.trim();
-		var b_content = CKEDITOR.instances.b_content.getData().trim(); //CKEditor로부터 데이터 얻어오기
-		
-		//입력한 값의 유무 확인
-		if(b_subject=='') {
-			alert('제목을 입력하세요.');
-			f.b_subject='';
-			f.b_subject.focus();
-			return;
-		}
-		if(b_content=='') {
-			alert('내용을 입력하세요.');
-			//문제 : 공백 -> &nbsp; 로 들어감, 공백이 2개 이상이면 p 태그로 감싸짐
-			//CKEDITOR.instances.b_content.setData(); : CKEditor 값 비우기
-			//f.b_content='';
-			//f.b_content.focus();
-			return;
-		}
-	
-		f.methoe="POST";
-		f.action="modify.do";
-		f.submit();
-	}// end : insert(f)
-	
-	
+	f.methoe="POST";
+	f.action="modify.do";
+	f.submit();
+}// end : insert(f)
 </script>
 </head>
 <body>
-
 <form>
 	<!-- Session Tracking -->
-	<input type="hidden" name="b_idx" value="${param.b_idx}">
-	
+	<input type="hidden" name="u_idx"       value="${user.u_idx}">
+	<input type="hidden" name="b_idx"       value="${param.b_idx}">
+	<input type="hidden" name="page"        value="${param.page}">
+	<input type="hidden" name="search"      value="${param.search}">
+	<input type="hidden" name="search_text" value="${param.search_text}">
 	<div id="box">
 	  <div class="panel panel-primary">
 	    <div class="panel-heading">
       		<h3>게시글 수정하기</h3>
       	</div>
 	    <div class="panel-body">
-	    	
 	    	<table class="table table-striped">
 	    		<tr>
 	    			<th width="15%">작성자</th>
@@ -117,7 +114,6 @@ textarea:focus, input:focus {
 	    					</script>
 	    			</td>
 	    		</tr>
-	    		
 	    		<tr>
 	    			<td colspan="2" align="center">
 	    				<input class="btn btn-primary" type="button" value="수정" onclick="modify(this.form);">

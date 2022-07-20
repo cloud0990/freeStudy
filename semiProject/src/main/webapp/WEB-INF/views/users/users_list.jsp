@@ -44,29 +44,25 @@
 </script>
 </head>
 <body>
+<div id="header">
+	<%@include file="../header/mainmenu.jsp" %>	
+</div>
 	<!-- 전체회원 목록 출력 -->
 	<div id="box">
-		<h1 id="title">회원 목록</h1>		
-			
-			<!-- 회원가입 / 로그인 버튼 -->
-			<div id="join">
-				<input class="btn btn-success" type="button" value="돌아가기" onclick="location.href='../board/list.do'">		
-			</div>
-			
 			<!-- 실제 데이터 출력 -->
 			<div>
-				<table class="table table-striped">
+				<table class="table">
 					<!-- 제목 -->				
 					<tr class="default">
-						<th>번호</th>
-						<th>닉네임</th>
-						<th>아이디</th>
-						<th>비밀번호</th>
-						<th>우편번호</th>
-						<th>주소</th>
-						<th>회원등급</th>
-						<th>가입일자</th>
-						<th>편집</th>
+						<td>번호</td>
+						<td>닉네임</td>
+						<td>아이디</td>
+						<td>비밀번호</td>
+						<td>우편번호</td>
+						<td>주소</td>
+						<td>회원등급</td>
+						<td>가입일자</td>
+						<td>편집</td>
 					</tr>
 					
 				<!-- 데이터가 없는 경우 -->
@@ -90,8 +86,8 @@
 						<td>${vo.u_grade}</td>
 						<td>${ fn:substring(vo.u_regdate,0,10)}</td>
 						<td>
-							<input class="btn btn-info"    type="button" value="수정" onclick="location.href='modify_form.do?u_idx=${vo.u_idx}';">
-							<input class="btn btn-danger"  type="button" value="삭제" onclick="del(${vo.u_idx})">
+							<input class="btn btn-default"  type="button" value="수정" onclick="location.href='modify_form.do?u_idx=${vo.u_idx}';">
+							<input class="btn btn-default"  type="button" value="삭제" onclick="del(${vo.u_idx})">
 						</td>
 					</tr>
 				</c:forEach>
