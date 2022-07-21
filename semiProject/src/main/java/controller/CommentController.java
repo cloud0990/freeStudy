@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import common.MyConstant;
 import dao.CommentDao;
+import util.Paging;
 import vo.CommentVo;
 
 @Controller
@@ -43,7 +44,18 @@ public class CommentController {
 		map.put("b_idx", b_idx);
 		
 		List<CommentVo> list = commentDao.selectList(map);
+	
+		//b_idx에 해당하는 댓글 갯수 구하기
+		int rowTotal = commentDao.selectRowTotal(b_idx);
+		
+		//페이징 메뉴 생성
+		String pageMenu = Paging.getCommentPaging(nowPage,
+												  rowTotal,
+												  MyConstant.Comment.BLOCK_LIST,
+												  MyConstant.Comment.BLOCK_PAGE); //한 화면에 보여줄 페이지 수
+		
 		model.addAttribute("list", list);
+		model.addAttribute("pageMenu", pageMenu);
 		
 		return "board/comment_list";
 	}

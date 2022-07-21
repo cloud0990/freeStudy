@@ -21,9 +21,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			)
 			where no between #{start} and #{end}
 	</select>
-	
 	<!-- b_idx별 갯수 -->
-	<select id="comment_row_count" parameterType="int" resultType="int">
+	<select id="comment_row_total" parameterType="int" resultType="int">
 		select nvl(count(*),0) from comment_tb where b_idx=#{b_idx}
 	</select>
 	

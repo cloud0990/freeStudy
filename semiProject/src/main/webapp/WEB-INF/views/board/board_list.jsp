@@ -58,9 +58,7 @@ function insert_form() {
 		<c:forEach var="vo" items="${list}">
 			<tr>
 				<td>${vo.b_idx}</td>	
-
 				<td style="text-align: left;">
-					
 					<!-- 들여쓰기 (1 ~ b_depth 반복)-->
 					<c:forEach begin="1" end="${vo.b_depth}">
 						&nbsp;&nbsp;&nbsp;
