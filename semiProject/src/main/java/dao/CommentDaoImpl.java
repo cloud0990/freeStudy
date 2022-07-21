@@ -26,6 +26,10 @@ public class CommentDaoImpl implements CommentDao {
 		return sqlSession.selectOne("comment.comment_one", c_idx);
 	}
 	@Override
+	public int selectRowTotal(int b_idx) {
+		return sqlSession.selectOne("comment.comment_row_total", b_idx);
+	}
+	@Override
 	public int insert(CommentVo vo) {
 		return sqlSession.insert("comment.comment_insert", vo);
 	}

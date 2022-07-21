@@ -60,20 +60,18 @@ function comment_del(c_idx) {
 <body>
 
 <hr>
-<!-- 페이징 메뉴 -->
-<a name="comment_page"></a>
-<div style="font-size:18px;">
-	<a href="#comment_page" onclick="comment_list(1);">1</a>&nbsp;&nbsp;
-	<a href="#comment_page" onclick="comment_list(2);">2</a>&nbsp;&nbsp;
-	<a href="#comment_page" onclick="comment_list(3);">3</a>&nbsp;&nbsp;
-</div>
+<!-- 댓글이 있으면 페이징 메뉴 보여주기 -->
+<c:if test="${not empty list}">
+	<a name="comment_page"></a>
+	<div style="font-size:18px;">${pageMenu}</div>
+</c:if>
 
 <div id="box">
 <!-- for(CommentVo vo : list) -->
 <c:forEach var="vo" items="${list}">
 <hr>
 	<div>
-		<div class="nickname"><span class="badge">${vo.u_nickname}</span></div>		
+		<div class="nickname"><span class="badge">(${vo.no}) - ${vo.u_nickname}</span></div>		
 		<div class="content_type">${vo.c_content}
 			<!-- 작성자만 삭제가능 -->
 			<c:if test="${user.u_idx eq vo.u_idx}">

@@ -9,7 +9,14 @@ public class CommentVo {
 	int    u_idx;
 	String u_nickname;
 	int    b_idx;
+	int    no;
 	
+	public int getNo() {
+		return no;
+	}
+	public void setNo(int no) {
+		this.no = no;
+	}
 	public int getC_idx() {
 		return c_idx;
 	}

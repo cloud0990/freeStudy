@@ -12,6 +12,7 @@ public interface CommentDao {
 	List<CommentVo> selectList(Map map);
 	List<CommentVo> selectOne(int c_idx);
 	
+	int selectRowTotal(int b_idx);
 	int insert(CommentVo vo);
 	int update(CommentVo vo);
 	int delete(int c_idx);
