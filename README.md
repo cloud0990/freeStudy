@@ -1,27 +1,11 @@
-# 개인 프로젝트
+## 👨‍👦‍👦 Semi Local Community Application
 
-### 기간 : 20220712 ~ 
+### 2022.07.12 ~ 2022.07.25 
 
 <br><br>
-## 개발 환경
-
-**1. 운영체제**
-- Windows 10
-
-**2. 프로젝트 환경**
-- Spring Legacy Project
-
-**3. 사용 툴**
-- Eclipse
-
-**4. DBMS**
-- Oracle DB
-
-**4. Server**
-- Apache Tomcat 8.5
-
-**5. 프로그래밍 언어**
-- Java, JavaScript, Servlet
-
-**6. 웹 표준 기술**
-- Ajax, HTML5, CSS, jQuery
+**OS : Windows 10**
+**Framework : Spring Legacy Project**
+**DB : Oracle**
+**Server : Apache Tomcat 8.5**
+**Language : Java**
+**Client : JavaScript, jQuery Html, CSS**
