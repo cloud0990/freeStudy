@@ -1,4 +1,4 @@
-## 👨‍👦‍👦 Semi Local Community Application
+## 👨‍👦‍👦 Local Community Application
 
 ### 2022.07.12 ~ 2022.07.25 
 <br>
